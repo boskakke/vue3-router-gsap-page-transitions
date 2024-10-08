@@ -8,14 +8,25 @@ const duration = 1.5
 const main = ref(null)
 const handleLeave = (el, done) => {
   const tl = gsap.timeline()
-  tl.set(el, { zIndex: 1 }).to(el, {
-    duration: duration,
-    x: -100,
-    ease: 'expo.inOut',
-    onComplete() {
-      done()
-    }
-  })
+  tl.set(el, { zIndex: 1 })
+    .addLabel('<start')
+    .to(
+      el.querySelector('div .max-w-xl'),
+      { opacity: 0, duration: duration, ease: 'expo.inOut' },
+      '<start'
+    )
+    .to(
+      el,
+      {
+        duration: duration,
+        x: -100,
+        ease: 'expo.inOut',
+        onComplete() {
+          done()
+        }
+      },
+      '<start'
+    )
 }
 
 const handleEnter = (el, done) => {
