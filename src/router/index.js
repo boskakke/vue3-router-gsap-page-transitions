@@ -3,8 +3,17 @@ import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+   scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+      }
+    } 
+     return new Promise((resolve, reject) => {
+      setTimeout(() => {      
+        resolve({ left: 0, top: 0 })
+      }, 750)
+    })
   },
   linkActiveClass: 'font-bold',
   routes: [

@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 const route = useRoute()
 import gsap from 'gsap'
-const duration = 2
+const duration = 1.5
 const main = ref(null)
 const handleLeave = (el, done) => {
   const tl = gsap.timeline()
@@ -19,8 +19,6 @@ const handleLeave = (el, done) => {
 }
 
 const handleEnter = (el, done) => {
-  console.log(el)
-
   const tl = gsap.timeline()
   tl.set(el, { zIndex: 2 })
 
@@ -32,7 +30,12 @@ const handleEnter = (el, done) => {
         xPercent: 0,
         duration: duration,
         ease: 'expo.inOut',
+        onStart: () => {
+          el.classList.add('page-enter')
+        },
         onComplete() {
+          el.classList.remove('page-enter')
+          gsap.set(el, { clearProps: 'all' })
           done()
         }
       }
@@ -54,3 +57,16 @@ const handleEnter = (el, done) => {
     </RouterView>
   </div>
 </template>
+
+<style lang="css">
+.page-enter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100dvh;
+  overflow: hidden;
+  will-change: transform;
+  z-index: 2;
+}
+</style>

@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="w-screen overflow-hidden mx-auto mt-20 flex justify-center absolute top-0 left-0 bg-orange-200"
+    class="w-screen overflow-hidden mx-auto pt-20 flex justify-center absolute top-0 left-0 bg-orange-200"
   >
     <div class="max-w-xl">
       <h1 class="text-3xl font-bold text-center p-4">Page</h1>
